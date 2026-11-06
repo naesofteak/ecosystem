@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title><%= typeof title !== "undefined" && title ? title : "Dashboard" %> | Hybrid Ecosystem</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body class="dashboard-page">
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar navbar-dark bg-dark sticky-top">
+
+    <div class="container-fluid px-3 px-lg-4">
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="navbar-toggler d-lg-none me-2"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#mobileSidebar"
+        aria-controls="mobileSidebar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand fw-bold me-auto" href="/dashboard">
+        <img
+          src="/images/logo.png"
+          alt="Hybrid Ecosystem"
+          class="site-logo"
+        >
+      </a>
+
+      <!-- User and Logout -->
+      <div class="d-flex align-items-center gap-3">
+
+        <span class="text-white d-none d-sm-block">
+          <%= user.name %>
+        </span>
+
+        <form action="/logout" method="POST" class="m-0">
+          <button type="submit" class="btn btn-outline-light btn-sm">
+            Logout
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+  <!-- MOBILE SIDEBAR -->
+  <div
+    class="offcanvas offcanvas-start text-bg-dark"
+    tabindex="-1"
+    id="mobileSidebar"
+    aria-labelledby="mobileSidebarLabel"
+  >
+
+    <div class="offcanvas-header border-bottom border-secondary">
+
+      <h5 class="offcanvas-title" id="mobileSidebarLabel">
+        Member Menu
+      </h5>
+
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+
+    </div>
+
+    <div class="offcanvas-body p-0">
+      <%- include("../partials/member-sidebar") %>
+    </div>
+
+  </div>
+
+
+  <!-- MAIN LAYOUT -->
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <!-- DESKTOP SIDEBAR -->
+      <aside class="col-lg-2 d-none d-lg-block dashboard-sidebar">
+        <%- include("../partials/member-sidebar") %>
+      </aside>
+
+
+      <!-- MAIN CONTENT -->
+      <main class="col-12 col-lg-10 dashboard-content">
+
+        <!-- PAGE HEADING -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+
+          <div>
+
+            <h3 class="fw-bold mb-1">
+              Member Dashboard
+            </h3>
+
+            <p class="text-muted mb-0">
+              Welcome back, <%= user.name %>
+            </p>
+
+          </div>
+
+          <div>
+
+            <% if (user.status === "active") { %>
+
+              <span class="badge bg-success fs-6">
+                Active
+              </span>
+
+            <% } else if (user.status === "pending_activation") { %>
+
+              <span class="badge bg-warning text-dark fs-6">
+                Pending Activation
+              </span>
+
+            <% } else { %>
+
+              <span class="badge bg-secondary fs-6">
+                <%= user.status %>
+              </span>
+
+            <% } %>
+
+          </div>
+
+        </div>
+
+
+        <!-- ACTIVATION NOTICE -->
+        <% if (user.status === "pending_activation") { %>
+
+          <div class="alert alert-warning mb-4" role="alert">
+
+            <h5 class="alert-heading fw-bold">
+              Account Activation Required
+            </h5>
+
+            <p class="mb-0">
+              Your registration is successful, but your account is not
+              activated yet. Complete the activation process to access
+              active-member features.
+            </p>
+
+          </div>
+
+        <% } else if (user.status === "active") { %>
+
+          <div class="alert alert-success mb-4" role="alert">
+            Your membership is active. Welcome to Hybrid Ecosystem.
+          </div>
+
+        <% } %>
+
+
+        <!-- SUMMARY CARDS -->
+        <div class="row g-3 mb-4">
+
+          <!-- MEMBER CODE -->
+          <div class="col-12 col-sm-6 col-xl-3">
+
+            <div class="card dashboard-stat-card h-100">
+
+              <div class="card-body">
+
+                <p class="text-muted mb-2">
+                  Member Code
+                </p>
+
+                <h5 class="fw-bold mb-0">
+                  <%= user.memberCode %>
+                </h5>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- MAIN WALLET -->
+          <div class="col-12 col-sm-6 col-xl-3">
+
+            <div class="card dashboard-stat-card h-100">
+
+              <div class="card-body">
+
+                <p class="text-muted mb-2">
+                  Main Wallet
+                </p>
+
+                <h4 class="fw-bold mb-0">
+                  0.00 USDT
+                </h4>
+
+                <small class="text-muted">
+                  Wallet module not configured
+                </small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- MASTER WALLET -->
+          <div class="col-12 col-sm-6 col-xl-3">
+
+            <div class="card dashboard-stat-card h-100">
+
+              <div class="card-body">
+
+                <p class="text-muted mb-2">
+                  Master Wallet
+                </p>
+
+                <h4 class="fw-bold mb-0">
+                  0.00 USDT
+                </h4>
+
+                <small class="text-muted">
+                  Wallet module not configured
+                </small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- MEMBERSHIP LEVEL -->
+          <div class="col-12 col-sm-6 col-xl-3">
+
+            <div class="card dashboard-stat-card h-100">
+
+              <div class="card-body">
+
+                <p class="text-muted mb-2">
+                  Membership Level
+                </p>
+
+                <h4 class="fw-bold mb-0">
+                  Not Assigned
+                </h4>
+
+                <small class="text-muted">
+                  Phase module pending
+                </small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- MEMBER INFORMATION -->
+        <div class="card shadow-sm mb-4">
+
+          <div class="card-header bg-white py-3">
+
+            <h5 class="fw-bold mb-0">
+              Member Information
+            </h5>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="table-responsive">
+
+              <table class="table table-bordered align-middle mb-0">
+
+                <tbody>
+
+                  <tr>
+                    <th class="bg-light" style="width: 35%">
+                      Full Name
+                    </th>
+                    <td><%= user.name %></td>
+                  </tr>
+
+                  <tr>
+                    <th class="bg-light">
+                      Member Code
+                    </th>
+                    <td><%= user.memberCode %></td>
+                  </tr>
+
+                  <tr>
+                    <th class="bg-light">
+                      Email Address
+                    </th>
+                    <td class="text-break"><%= user.email %></td>
+                  </tr>
+
+                  <tr>
+                    <th class="bg-light">
+                      Mobile Number
+                    </th>
+                    <td><%= user.mobile %></td>
+                  </tr>
+
+                  <tr>
+                    <th class="bg-light">
+                      Referral Code
+                    </th>
+                    <td><%= user.referralCode %></td>
+                  </tr>
+
+                  <tr>
+                    <th class="bg-light">
+                      Account Status
+                    </th>
+                    <td>
+
+                      <% if (user.status === "active") { %>
+
+                        <span class="badge bg-success">
+                          Active
+                        </span>
+
+                      <% } else if (user.status === "pending_activation") { %>
+
+                        <span class="badge bg-warning text-dark">
+                          Pending Activation
+                        </span>
+
+                      <% } else { %>
+
+                        <span class="badge bg-secondary">
+                          <%= user.status %>
+                        </span>
+
+                      <% } %>
+
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th class="bg-light">
+                      Activation Status
+                    </th>
+                    <td>
+
+                      <% if (user.activation && user.activation.isActivated) { %>
+
+                        <span class="badge bg-success">
+                          Activated
+                        </span>
+
+                      <% } else { %>
+
+                        <span class="badge bg-warning text-dark">
+                          Not Activated
+                        </span>
+
+                      <% } %>
+
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th class="bg-light">
+                      Joined Date
+                    </th>
+                    <td>
+                      <%= user.joinedAt
+                        ? new Date(user.joinedAt).toLocaleDateString("en-IN")
+                        : "Not available" %>
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- BINARY PLACEMENT INFORMATION -->
+        <div class="card shadow-sm mb-4">
+
+          <div class="card-header bg-white py-3">
+
+            <h5 class="fw-bold mb-0">
+              Binary Placement Information
+            </h5>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="row g-3">
+
+              <!-- ORIGINAL SPONSOR -->
+              <div class="col-12 col-md-6">
+
+                <div class="border rounded p-3 h-100">
+
+                  <p class="text-muted mb-2">
+                    Original Sponsor
+                  </p>
+
+                  <h6 class="fw-bold mb-0">
+
+                    <% if (user.sponsorId) { %>
+
+                      Referred by a sponsor
+
+                    <% } else { %>
+
+                      Direct Registration
+
+                    <% } %>
+
+                  </h6>
+
+                </div>
+
+              </div>
+
+
+              <!-- SELECTED TEAM -->
+              <div class="col-12 col-md-6">
+
+                <div class="border rounded p-3 h-100">
+
+                  <p class="text-muted mb-2">
+                    Selected Sponsor Team
+                  </p>
+
+                  <h6 class="fw-bold mb-0">
+
+                    <% if (user.placementSide === "left") { %>
+
+                      Left Team
+
+                    <% } else if (user.placementSide === "right") { %>
+
+                      Right Team
+
+                    <% } else { %>
+
+                      Not Applicable
+
+                    <% } %>
+
+                  </h6>
+
+                </div>
+
+              </div>
+
+
+              <!-- ACTUAL PLACEMENT PARENT -->
+              <div class="col-12 col-md-6">
+
+                <div class="border rounded p-3 h-100">
+
+                  <p class="text-muted mb-2">
+                    Actual Placement Parent
+                  </p>
+
+                  <h6 class="fw-bold mb-0 text-break">
+
+                    <%= user.placementParentId
+                      ? user.placementParentId.toString()
+                      : "Not Applicable" %>
+
+                  </h6>
+
+                </div>
+
+              </div>
+
+
+              <!-- ACTUAL POSITION -->
+              <div class="col-12 col-md-6">
+
+                <div class="border rounded p-3 h-100">
+
+                  <p class="text-muted mb-2">
+                    Actual Position
+                  </p>
+
+                  <h6 class="fw-bold mb-0">
+
+                    <% if (user.position === "left") { %>
+
+                      Left
+
+                    <% } else if (user.position === "right") { %>
+
+                      Right
+
+                    <% } else { %>
+
+                      Not Applicable
+
+                    <% } %>
+
+                  </h6>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <p class="text-muted small mt-3 mb-0">
+              Your selected sponsor team and actual binary placement
+              position are stored separately.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- REFERRAL INFORMATION -->
+        <div class="card shadow-sm mb-4">
+
+          <div class="card-header bg-white py-3">
+
+            <h5 class="fw-bold mb-0">
+              Referral Information
+            </h5>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="row g-4">
+
+              <!-- REFERRAL CODE -->
+              <div class="col-12 col-md-6">
+
+                <label class="form-label text-muted">
+                  Your Referral Code
+                </label>
+
+                <div class="input-group">
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="myReferralCode"
+                    value="<%= user.referralCode %>"
+                    readonly
+                  >
+
+                  <button
+                    class="btn btn-outline-primary"
+                    type="button"
+                    onclick="copyReferralCode()"
+                  >
+                    Copy
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <!-- SPONSOR INFORMATION -->
+              <div class="col-12 col-md-6">
+
+                <label class="form-label text-muted">
+                  Sponsor Information
+                </label>
+
+                <p class="fw-semibold mb-0">
+
+                  <%= user.sponsorId
+                    ? "Referred by a sponsor"
+                    : "No sponsor (Direct Registration)" %>
+
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer class="text-center text-muted small py-4">
+
+          &copy; <%= new Date().getFullYear() %> Hybrid Ecosystem
+
+        </footer>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <!-- BOOTSTRAP JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <!-- COPY REFERRAL CODE -->
+  <script>
+
+    async function copyReferralCode() {
+
+      const input = document.getElementById("myReferralCode");
+
+      try {
+
+        await navigator.clipboard.writeText(input.value);
+
+        alert("Referral code copied successfully");
+
+      } catch (error) {
+
+        input.select();
+
+        document.execCommand("copy");
+
+        alert("Referral code copied");
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>

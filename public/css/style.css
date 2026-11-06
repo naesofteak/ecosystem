@@ -1,0 +1,632 @@
+
+/* =====================================
+   GLOBAL
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #212529;
+  background-color: #f5f7fb;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+
+/* =====================================
+   WEBSITE LOGO
+===================================== */
+
+.site-logo {
+  display: block;
+  width: auto;
+  height: 45px;
+  max-width: 220px;
+  object-fit: contain;
+}
+
+
+/* =====================================
+   AUTHENTICATION PAGES
+===================================== */
+
+.auth-page {
+  min-height: 100vh;
+  background-color: #f1f4f9;
+}
+
+.auth-container {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.auth-card {
+  width: 100%;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+.auth-card .card-body {
+  padding: 40px;
+}
+
+.auth-card h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #212529;
+}
+
+.auth-card .form-label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #343a40;
+}
+
+.auth-card .form-control {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.auth-card .form-control:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12);
+}
+
+.auth-card .btn {
+  min-height: 50px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.login-card {
+  max-width: 480px;
+}
+
+.register-card {
+  max-width: 850px;
+}
+
+
+/* =====================================
+   AUTH NAVBAR
+===================================== */
+
+.auth-page .navbar {
+  min-height: 56px;
+}
+
+.auth-page .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-auth-btn {
+  min-height: 38px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* =====================================
+   PASSWORD INPUT GROUP
+===================================== */
+
+.password-input-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: 100%;
+}
+
+.password-input-group .form-control {
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  min-height: 50px;
+  border-radius: 8px 0 0 8px;
+}
+
+.password-input-group .password-show-btn {
+  flex: 0 0 70px;
+  width: 70px;
+  min-width: 70px;
+  min-height: 50px;
+  padding: 0 10px;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.password-input-group .password-show-btn:focus {
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12);
+}
+
+
+
+/* =====================================
+   GENERAL FORM ELEMENTS
+===================================== */
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12);
+}
+
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-text {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+
+/* =====================================
+   DASHBOARD
+===================================== */
+
+.dashboard-page {
+  min-height: 100vh;
+  background-color: #f5f7fb;
+}
+
+.dashboard-sidebar {
+  min-height: calc(100vh - 56px);
+  padding: 0;
+  background-color: #212529;
+}
+
+.dashboard-content {
+  min-width: 0;
+  min-height: calc(100vh - 56px);
+  padding: 25px;
+}
+
+.dashboard-content h3 {
+  font-weight: 700;
+  color: #212529;
+}
+
+.dashboard-content h4,
+.dashboard-content h5 {
+  font-weight: 600;
+}
+
+.dashboard-content .text-muted {
+  color: #6c757d !important;
+}
+
+
+/* =====================================
+   DASHBOARD STAT CARDS
+===================================== */
+
+.dashboard-stat-card {
+  height: 100%;
+  border: 0;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-stat-card .card-body {
+  padding: 22px;
+}
+
+.dashboard-stat-card h5 {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.dashboard-stat-card h3 {
+  margin-bottom: 0;
+  font-size: 25px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+
+/* =====================================
+   MEMBER SIDEBAR MENU
+===================================== */
+
+.member-menu {
+  min-height: 100%;
+  padding: 15px;
+  background-color: #212529;
+}
+
+.member-menu .nav-link {
+  display: block;
+  padding: 12px 15px;
+  margin-bottom: 4px;
+  border-radius: 7px;
+  color: #ced4da;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.member-menu .nav-link:hover,
+.member-menu .nav-link.active {
+  color: #fff;
+  background-color: #0d6efd;
+}
+
+.member-menu .nav-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.member-menu .nav-link i,
+.member-menu .nav-link svg {
+  margin-right: 8px;
+}
+
+
+/* =====================================
+   DASHBOARD NAVBAR
+===================================== */
+
+.dashboard-page .navbar {
+  min-height: 56px;
+}
+
+.dashboard-page .navbar-brand {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.dashboard-page .navbar-toggler {
+  box-shadow: none;
+}
+
+.dashboard-page .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.2);
+}
+
+
+/* =====================================
+   CARDS AND CONTENT SECTIONS
+===================================== */
+
+.dashboard-content .card {
+  border-radius: 12px;
+}
+
+.dashboard-content .card-header {
+  padding: 15px 20px;
+  font-weight: 600;
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.dashboard-content .card-body {
+  min-width: 0;
+}
+
+.content-card {
+  border: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =====================================
+   RESPONSIVE TABLES
+===================================== */
+
+.dashboard-content .table {
+  width: 100%;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.dashboard-content .table th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dashboard-content .table td {
+  vertical-align: middle;
+}
+
+.dashboard-content .table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dashboard-content .table-responsive .table {
+  min-width: 600px;
+}
+
+.dashboard-content .table td,
+.dashboard-content .table th {
+  padding: 12px;
+}
+
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.btn {
+  border-radius: 7px;
+  font-weight: 500;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
+
+.btn-sm {
+  border-radius: 6px;
+}
+
+
+/* =====================================
+   ALERTS AND BADGES
+===================================== */
+
+.alert {
+  border-radius: 8px;
+}
+
+.badge {
+  font-weight: 500;
+  padding: 6px 9px;
+}
+
+
+/* =====================================
+   MODALS
+===================================== */
+
+.modal-content {
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+.modal-header {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.modal-footer {
+  border-top: 1px solid #e9ecef;
+}
+
+
+/* =====================================
+   MOBILE OFFCANVAS SIDEBAR
+===================================== */
+
+.offcanvas {
+  max-width: 85%;
+}
+
+.offcanvas .member-menu {
+  min-height: 100%;
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 991.98px) {
+
+  .dashboard-content {
+    padding: 20px 15px;
+  }
+
+  .dashboard-sidebar {
+    min-height: auto;
+  }
+
+  .dashboard-stat-card .card-body {
+    padding: 18px;
+  }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 767.98px) {
+
+  .auth-container {
+    padding: 25px 15px;
+  }
+
+  .register-card {
+    max-width: 100%;
+  }
+
+  .auth-card .card-body {
+    padding: 28px 22px;
+  }
+
+  .auth-card h2 {
+    font-size: 27px;
+  }
+
+  .dashboard-content {
+    padding: 18px 12px;
+  }
+
+  .dashboard-stat-card .card-body {
+    padding: 17px;
+  }
+
+  .dashboard-stat-card h3 {
+    font-size: 22px;
+  }
+
+  .dashboard-content .card-header {
+    padding: 13px 15px;
+  }
+
+}
+
+
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media (max-width: 575.98px) {
+
+  .site-logo {
+    height: 36px;
+    max-width: 170px;
+  }
+
+  .auth-container {
+    padding: 18px 10px;
+  }
+
+  .auth-card {
+    border-radius: 12px;
+  }
+
+  .auth-card .card-body {
+    padding: 24px 17px;
+  }
+
+  .auth-card h2 {
+    font-size: 25px;
+  }
+
+  .dashboard-content h3 {
+    font-size: 22px;
+  }
+
+  .dashboard-content .table {
+    font-size: 13px;
+  }
+
+  .dashboard-content .table td,
+  .dashboard-content .table th {
+    padding: 9px;
+  }
+
+  .dashboard-stat-card h3 {
+    font-size: 20px;
+  }
+
+  .dashboard-stat-card h5 {
+    font-size: 14px;
+  }
+
+  .dashboard-content .btn {
+    font-size: 13px;
+  }
+
+}
+
+
+/* =====================================
+   EXTRA SMALL MOBILE
+===================================== */
+
+@media (max-width: 375px) {
+
+  .site-logo {
+    height: 32px;
+    max-width: 145px;
+  }
+
+  .auth-card .card-body {
+    padding: 20px 14px;
+  }
+
+  .auth-card h2 {
+    font-size: 23px;
+  }
+
+  .dashboard-content {
+    padding: 15px 10px;
+  }
+
+  .dashboard-stat-card .card-body {
+    padding: 14px;
+  }
+
+}
+
+
+/* =====================================
+   ACCESSIBILITY
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+}
